@@ -1,5 +1,5 @@
 {
-  "name": "todo-app-review",
+  "name": "todo-app",
   "version": "1.0.0",
   "description": "Simple todo list app",
   "private": true,
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/IndieCoderMM/todo-app.git"
   },
   "keywords": [],
-  "author": "IndieCoderMM",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/IndieCoderMM/todo-app/issues"
