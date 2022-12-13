@@ -7,7 +7,6 @@ export const addNewTask = ({ task, list }) => {
 };
 
 export const deleteTask = ({ index, list }) => {
-  if (index >= list.length) return;
   for (let i = index + 1; i < list.length; i += 1) {
     list[i].index -= 1;
   }
@@ -15,6 +14,5 @@ export const deleteTask = ({ index, list }) => {
 };
 
 export const updateTask = ({ task, index, list }) => {
-  if (index >= list.length) return;
   list[index].task = task;
 };

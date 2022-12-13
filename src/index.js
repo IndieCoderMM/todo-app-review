@@ -11,6 +11,9 @@ const date = document.querySelector('#date');
 
 const LOCAL_KEY = 'microtasks-data';
 
+let dragItem;
+let dropOn;
+
 const getLocalData = () => {
   let todoList = [];
   const localData = localStorage.getItem(LOCAL_KEY);
@@ -39,8 +42,9 @@ document.addEventListener('click', (e) => {
   // handling remove buttons
   const removeBtn = e.target.closest('.remove-btn');
   if (removeBtn === null) return;
-  const idToRemove = removeBtn.dataset.index;
-  deleteTask({ index: parseInt(idToRemove, 10), list: todoList });
+  const idToRemove = parseInt(removeBtn.dataset.index, 10);
+  if (idToRemove >= todoList.length) return;
+  deleteTask({ index: idToRemove, list: todoList });
   updateTodoList(todoList);
 });
 
@@ -59,7 +63,9 @@ document.addEventListener('change', () => updateTodoList(todoList));
 
 clearBtn.addEventListener('click', () => {
   const completedItems = todoList.filter((item) => item.completed);
-  completedItems.forEach((todo) => deleteTask({ index: todo.index, list: todoList }));
+  completedItems.forEach((todo) =>
+    deleteTask({ index: todo.index, list: todoList })
+  );
   updateTodoList(todoList);
 });
 
@@ -69,8 +75,6 @@ setInterval(() => {
 }, 1000);
 
 // * Drag and Drop Feature
-let dragItem;
-let dropOn;
 
 document.addEventListener('dragstart', (e) => {
   dragItem = e.target.closest('.todo-item');
@@ -93,7 +97,7 @@ document.addEventListener('drop', (e) => {
   reorderTodoList(
     todoList,
     parseInt(dragItem.dataset.index, 10),
-    parseInt(dropOn.dataset.index, 10),
+    parseInt(dropOn.dataset.index, 10)
   );
   updateTodoList(todoList);
 });
